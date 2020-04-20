@@ -152,13 +152,14 @@ abstract public class ArticlePageObject extends MainPageObject {
         if (Platform.getInstance().isMw()) {
             System.out.println("Method closeArticle() does nothing for platform " + Platform.getInstance().getPlatformVar()
             );
+        } else {
+            this.waitForElementAndClick
+                    (
+                            CLOSE_ARTICLE_BUTTON,
+                            "Cannot find article, cannot find X link",
+                            5
+                    );
         }
-        this.waitForElementAndClick
-                (
-                        CLOSE_ARTICLE_BUTTON,
-                        "Cannot find article, cannot find X link",
-                        5
-                );
     }
 
     //Проверяет наличие тайтла без ожидания
@@ -172,8 +173,9 @@ abstract public class ArticlePageObject extends MainPageObject {
         if (Platform.getInstance().isMw()) {
             this.removeArticleFromSavedIfItAdded();
         }
-        this.waitForElementPresent(OPTIONS_ADD_TO_MY_LIST_BUTTON, "Cannot find option to add article to reading list", 10);
-        this.waitForElementAndClick(OPTIONS_ADD_TO_MY_LIST_BUTTON, "Cannot find option to add article to reading list", 10);
+            this.waitForElementPresent(OPTIONS_ADD_TO_MY_LIST_BUTTON, "Cannot find option to add article to reading list", 10);
+            this.waitForElementAndClick(OPTIONS_ADD_TO_MY_LIST_BUTTON, "Cannot find option to add article to reading list", 10);
+
     }
 
     //Удаляет статью из сохран>нных, если она там уже есть

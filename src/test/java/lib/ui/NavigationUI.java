@@ -23,13 +23,14 @@ abstract public class NavigationUI extends MainPageObject {
                     "Cannot find navigation button to My list",
                     5
             );
+        } else {
+            this.waitForElementAndClick
+                    (
+                            MY_LISTS_LINK,
+                            "Cannot find navigation button to My list",
+                            5
+                    );
         }
-        this.waitForElementAndClick
-                (
-                        MY_LISTS_LINK,
-                        "Cannot find navigation button to My list",
-                        5
-                );
     }
 
     //Открытие левого меню в вебе
