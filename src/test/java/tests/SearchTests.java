@@ -4,13 +4,18 @@ import lib.CoreTestCase;
 import lib.Platform;
 import lib.ui.SearchPageObject;
 import lib.ui.factories.SearchPageObjectFactory;
+import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class SearchTests extends CoreTestCase {
     @Test
     public void testFindSearchPlaceholder() {
-        if (Platform.getInstance().isMw()){
+        if (Platform.getInstance().isMw()) {
             return;
         }
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
@@ -37,6 +42,7 @@ public class SearchTests extends CoreTestCase {
     @Test
     public void testCancelSearch() {
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
+        SearchPageObject.initSearchInput();
         SearchPageObject.waitForCancelButtonToAppear();
         SearchPageObject.clickCancelSearch();
         SearchPageObject.waitForCancelButtonToDisappear();
@@ -82,15 +88,33 @@ public class SearchTests extends CoreTestCase {
     }
 
     @Test
-    public void testSearchThreeResultByTitleAndDescription(){
+    public void testSearchThreeResultByTitleAndDescription() {
         SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
 
         SearchPageObject.initSearchInput();
         String search_line = "Java";
         SearchPageObject.typeSearchLine(search_line);
 
-        SearchPageObject.waitForElementByTitleAndDescription("Java", "Island of Indonesia");
-        SearchPageObject.waitForElementByTitleAndDescription("Java (programming language)", "Object-oriented programming language");
-        SearchPageObject.waitForElementByTitleAndDescription("JavaScript", "Lenguaje de programacion");
+        SearchPageObject.waitForElementByTitleAndDescription("Java", "sland of Indonesia");
+        SearchPageObject.waitForElementByTitleAndDescription("Java (programming language)", "bject-oriented programming language");
+        SearchPageObject.waitForElementByTitleAndDescription("JavaScript", "rogramming language");
     }
+
+    @Test
+    public void testSearchTermInSearchResult() {
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
+
+        SearchPageObject.initSearchInput();
+        String search_line = "test";
+        SearchPageObject.typeSearchLine(search_line);
+
+        List <WebElement>results = SearchPageObject.getListResultElement();
+
+        for (int i = 0; i < results.size(); i++) {
+            Assert.assertTrue("Search result does not contain input word",
+                    results.get(i).getAttribute("text").contains("test")||results.get(i).getAttribute("text").contains("Test"));
+        }
+    }
+
+
 }

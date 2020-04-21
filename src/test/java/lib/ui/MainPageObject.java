@@ -235,6 +235,24 @@ public class MainPageObject {
         return elements.size();
     }
 
+    //Ожидание появления всех элементов на странице с указанием таймаута
+    public List<WebElement> waitForElementsPresent(String locator, String error_message, long timeoutInSeconds) {
+        By by = this.getLocatorByString(locator);
+        WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+        wait.withMessage(error_message + "\n");
+
+        List<WebElement> elements =
+                wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
+        return elements;
+    }
+
+    //Возвращает список всех найденных результатов
+    public List<WebElement> getListOfElements(String locator, String error_message, long timeoutInSeconds){
+       List<WebElement> elements = this.waitForElementsPresent(locator, error_message, timeoutInSeconds);
+
+        return elements;
+    }
+
     //Проверка, что элементы не найдены
     public void assertElementsNotPresent(String locator, String error_message) {
         By by = this.getLocatorByString(locator);

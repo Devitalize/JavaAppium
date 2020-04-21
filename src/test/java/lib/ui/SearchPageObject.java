@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.util.List;
+
 abstract public class SearchPageObject extends MainPageObject {
     protected static String
             SEARCH_INIT_ELEMENT,
@@ -13,6 +15,7 @@ abstract public class SearchPageObject extends MainPageObject {
             SEARCH_CANCEL_BUTTON,
             SEARCH_RESULT_ELEMENT,
             SEARCH_EMPTY_RESULT_ELEMENT,
+            SEARCH_RESULT_TITLE,
             SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION;
 
 
@@ -152,6 +155,12 @@ abstract public class SearchPageObject extends MainPageObject {
                 search_result_xpath,
                 "Cannot find and search result with substring " + title + " and " + description,
                 20);
+    }
+
+    //Получения всех результатов
+    public List<WebElement> getListResultElement(){
+        List<WebElement> results = this.getListOfElements(SEARCH_RESULT_TITLE, "Cannot find list elements results", 10);
+        return results;
     }
 
 }

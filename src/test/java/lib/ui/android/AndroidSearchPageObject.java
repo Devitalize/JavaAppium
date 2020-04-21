@@ -13,6 +13,7 @@ public class AndroidSearchPageObject extends SearchPageObject {
         SEARCH_CANCEL_BUTTON = "id:org.wikipedia:id/search_close_btn";
         SEARCH_RESULT_ELEMENT = "xpath://*[@resource-id='org.wikipedia:id/search_results_list']/*[@resource-id='org.wikipedia:id/page_list_item_container']";
         SEARCH_EMPTY_RESULT_ELEMENT = "xpath://*[@text='No results found']";
+        SEARCH_RESULT_TITLE = "xpath://*[@resource-id='org.wikipedia:id/page_list_item_title']";
         SEARCH_RESULT_BY_TITLE_AND_DESCRIPTION = "xpath://*[@resource-id='org.wikipedia:id/page_list_item_title' and @text='{TITLE}']/../*[@resource-id='org.wikipedia:id/page_list_item_description' and @text='{DESCRIPTION}']";
     }
 

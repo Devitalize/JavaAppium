@@ -69,17 +69,17 @@ abstract public class ArticlePageObject extends MainPageObject {
             this.swipeUpToFindElement(
                     FOOTER_ELEMENT,
                     "Cannot find the end of article",
-                    40);
+                    60);
         } else if (Platform.getInstance().isIOS()) {
             this.swipeUpTillElementAppear(
                     FOOTER_ELEMENT,
                     "Cannot find the end of article",
-                    40);
+                    60);
         } else {
             this.scrollWebPageTillElementNotVisible(
                     FOOTER_ELEMENT,
                     "Cannot find the end of article",
-                    40
+                    60
             );
         }
     }
